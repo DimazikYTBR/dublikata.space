@@ -81,6 +81,13 @@
             color: var(--text-primary);
         }
 
+        /* Стили для кнопки и профиля в хедере */
+        #auth-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .btn-auth {
             background: #fff;
             color: #000;
@@ -90,8 +97,52 @@
             font-weight: 600;
             font-size: 14px;
             transition: 0.2s;
+            border: none;
+            cursor: pointer;
         }
         .btn-auth:hover { background: #d0d0d0; }
+
+        /* Стили мини-профиля */
+        #user-profile-small {
+            display: none; /* Скрыто по умолчанию */
+            align-items: center;
+            gap: 10px;
+            padding: 5px 10px 5px 5px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            font-size: 14px;
+            object-fit: cover;
+        }
+
+        .user-name-small {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .btn-logout {
+            font-size: 10px;
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 1px;
+        }
+        .btn-logout:hover { color: #ff4b4b; }
 
         .hero-section {
             height: 100vh;
@@ -244,7 +295,19 @@
                 <img src="dublikata.png" alt="Logo" class="logo-img">
                 <div class="logo-text">dublikata</div>
             </div>
-            <a href="/auth" class="btn-auth">Log In</a>
+            
+            <div id="auth-container">
+                <a href="/auth" class="btn-auth" id="loginBtn">Log In</a>
+                
+                <div id="user-profile-small">
+                    <img id="user-avatar-img" src="" alt="" class="user-avatar" style="display: none;">
+                    <div id="user-letter-avatar" class="user-avatar" style="display: none;"></div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span id="user-name-text" class="user-name-small"></span>
+                        <button onclick="logout()" class="btn-logout">Log out</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -294,6 +357,7 @@
     </footer>
 
     <script>
+        // --- Анимация космоса ---
         const canvas = document.getElementById('space-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -353,17 +417,4 @@
                     let pSize = Math.max(0, (1 - star.z / width) * star.size * 2);
                     let opacity = Math.min(1, (1 - star.z / width) * 1.5);
                     
-                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(px, py, pSize, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    </script>
-</body>
-</html>
+                    ctx.fillStyle = `rgba(255, 255, 255, ${
