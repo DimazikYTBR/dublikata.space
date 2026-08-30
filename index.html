@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dublikata.space</title>
+    <title>dublikata</title>
     
     <style>
         :root {
             --bg-color: #000000;
             --surface-color: #121214;
-            --surface-hover: #1c1c1f;
             --text-primary: #ffffff;
             --text-secondary: #86868b;
             --accent: #007AFF;
@@ -81,13 +80,6 @@
             color: var(--text-primary);
         }
 
-        /* Стили для кнопки и профиля в хедере */
-        #auth-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .btn-auth {
             background: #fff;
             color: #000;
@@ -102,28 +94,20 @@
         }
         .btn-auth:hover { background: #d0d0d0; }
 
-        /* Стили мини-профиля */
         #user-profile-small {
-            display: none; /* Скрыто по умолчанию */
+            display: none;
             align-items: center;
             gap: 10px;
-            padding: 5px 10px 5px 5px;
-            background: rgba(255,255,255,0.1);
+            padding: 5px 12px 5px 6px;
+            background: rgba(255,255,255,0.08);
             border-radius: 25px;
             border: 1px solid var(--border);
         }
 
         .user-avatar {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #fff;
-            font-size: 14px;
             object-fit: cover;
         }
 
@@ -140,7 +124,7 @@
             border: none;
             cursor: pointer;
             padding: 0;
-            margin-top: 1px;
+            display: block;
         }
         .btn-logout:hover { color: #ff4b4b; }
 
@@ -300,9 +284,8 @@
                 <a href="/auth" class="btn-auth" id="loginBtn">Log In</a>
                 
                 <div id="user-profile-small">
-                    <img id="user-avatar-img" src="" alt="" class="user-avatar" style="display: none;">
-                    <div id="user-letter-avatar" class="user-avatar" style="display: none;"></div>
-                    <div style="display: flex; flex-direction: column;">
+                    <img id="user-avatar-img" src="" alt="Avatar" class="user-avatar">
+                    <div>
                         <span id="user-name-text" class="user-name-small"></span>
                         <button onclick="logout()" class="btn-logout">Log out</button>
                     </div>
@@ -357,7 +340,27 @@
     </footer>
 
     <script>
-        // --- Анимация космоса ---
+        // Проверка авторизации при загрузке главной
+        const savedUser = localStorage.getItem('dublikata_user');
+        if (savedUser) {
+            const user = JSON.parse(savedUser);
+            document.getElementById('loginBtn').style.display = 'none';
+            
+            const profileBlock = document.getElementById('user-profile-small');
+            profileBlock.style.display = 'flex';
+            
+            document.getElementById('user-name-text').innerText = user.name;
+            if (user.avatar) {
+                document.getElementById('user-avatar-img').src = user.avatar;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('dublikata_user');
+            window.location.reload();
+        }
+
+        // 3D Анимация космоса и звёзд
         const canvas = document.getElementById('space-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -417,4 +420,17 @@
                     let pSize = Math.max(0, (1 - star.z / width) * star.size * 2);
                     let opacity = Math.min(1, (1 - star.z / width) * 1.5);
                     
-                    ctx.fillStyle = `rgba(255, 255, 255, ${
+                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(px, py, pSize, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
