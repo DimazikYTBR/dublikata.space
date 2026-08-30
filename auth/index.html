@@ -85,6 +85,7 @@
             display: flex;
             justify-content: center;
             min-height: 50px;
+            width: 100%;
         }
 
         .back-link {
@@ -110,41 +111,35 @@
             </a>
         </div>
 
-        <div id="telegram-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" 
-                    data-telegram-login="dublikata_bot" 
-                    data-size="large" 
-                    data-userpic="true" 
-                    data-onauth="onTelegramAuth(user)">
-            </script>
-        </div>
+        <div id="telegram-widget-wrap"></div>
 
         <a href="/" class="back-link">← Back to home</a>
     </div>
 
 <script>
-    // Функция, которую вызывает Telegram при успешном входе через виджет
-    function onTelegramAuth(user) {
+    // Глобальная функция для приёма данных от виджета Telegram
+    window.onTelegramAuth = function(user) {
         const userData = {
             name: user.first_name + (user.last_name ? ' ' + user.last_name : ''),
             avatar: user.photo_url || ''
         };
         localStorage.setItem('dublikata_user', JSON.stringify(userData));
         window.location.href = '/';
-    }
+    };
 
-    // Обработка возврата после GitHub (если настроишь OAuth)
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    if (code) {
-        // Уведомление об успешной авторизации через GitHub
-        const userData = {
-            name: 'GitHub User',
-            avatar: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
-        };
-        localStorage.setItem('dublikata_user', JSON.stringify(userData));
-        window.location.href = '/';
-    }
+    // Динамическая генерация скрипта виджета ТГ
+    window.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('telegram-widget-wrap');
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = "https://telegram.org/js/telegram-widget.js?22";
+        script.setAttribute('data-telegram-login', 'dublikatabot');
+        script.setAttribute('data-size', 'large');
+        script.setAttribute('data-userpic', 'true');
+        script.setAttribute('data-onauth', 'onTelegramAuth(user)');
+        
+        container.appendChild(script);
+    });
 </script>
 </body>
 </html>
