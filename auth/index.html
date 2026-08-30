@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | dublikata.space</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --surface-color: #121214;
+            --surface-hover: #1c1c1f;
+            --text-primary: #ffffff;
+            --text-secondary: #86868b;
+            --accent: #007AFF;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .greeting {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 35px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-provider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-telegram {
+            background: #24A1DE;
+            color: #fff;
+            border: none;
+        }
+        .btn-telegram:hover { opacity: 0.9; }
+
+        .btn-github {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+        }
+        .btn-github:hover { background: #dedede; }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+        .back-link:hover { color: #fff; }
+
+        /* Скрытый контейнер виджета Telegram */
+        #telegram-login-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <div class="greeting">Welcome</div>
+        <div class="subtitle">Sign in to access dublikata ecosystem</div>
+
+        <div class="auth-buttons">
+            <button class="btn-provider btn-telegram" id="showTgBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.1-1.79 6.84-2.97 8.22-3.54 3.91-1.63 4.72-1.91 5.25-1.92.12 0 .39.03.56.17.14.12.18.28.2.45-.02.07-.02.13-.04.23z"/></svg>
+                Sign in with Telegram
+            </button>
+            <button class="btn-provider btn-github" onclick="mockGitHubLogin()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                Sign in with GitHub
+            </button>
+        </div>
+
+        <div id="telegram-login-container"></div>
+
+        <a href="/" class="back-link">← Back to dublikata.space</a>
+    </div>
+
+<script>
+    // Функция, которая сохраняет данные и перенаправляет
+    function handleSuccessfulLogin(userData) {
+        localStorage.setItem('dublikata_user', JSON.stringify(userData));
+        window.location.href = '/'; // Вернуться на главную
+    }
+
+    // --- Telegram Auth ---
+    document.getElementById('showTgBtn').addEventListener('click', function() {
+        this.style.display = 'none'; // Спрятать кнопку
+        
+        // Создаем скрипт виджета
+        const tgScript = document.createElement('script');
+        tgScript.async = true;
+        tgScript.src = "https://telegram.org/js/telegram-widget.js?22";
+        
+        // ВАЖНО: Замени 'dublikata_bot' на имя твоего бота
+        tgScript.setAttribute('data-telegram-login', 'dublikata_bot'); 
+        tgScript.setAttribute('data-size', 'large');
+        tgScript.setAttribute('data-userpic', 'true');
+        tgScript.setAttribute('data-onauth', 'onTelegramAuth(user)');
+        tgScript.setAttribute('data-request-access', 'write');
+
+        document.getElementById('telegram-login-container').appendChild(tgScript);
+    });
+
+    // Функция, которую Telegram вызывает при успешном входе
+    function onTelegramAuth(user) {
+        handleSuccessfulLogin({
+            name: user.first_name + (user.last_name ? ' ' + user.last_name : ''),
+            avatar: user.photo_url, // URL аватарки
+            provider: 'telegram'
+        });
+    }
+
+    // --- GitHub Auth (Имитация) ---
+    function mockGitHubLogin() {
+        // В реальности тут был бы сложный OAuth, а сейчас просто создаем фейкового юзера
+        handleSuccessfulLogin({
+            name: 'GitHubUser_' + Math.floor(Math.random() * 1000),
+            avatar: 'https://avatars.githubusercontent.com/u/9919?v=4', // Аватарка GitHub по умолчанию
+            provider: 'github'
+        });
+    }
+</script>
+</body>
+</html>
