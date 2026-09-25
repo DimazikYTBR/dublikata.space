@@ -305,6 +305,14 @@
     <section class="projects-section">
         <h2 class="section-title">Our Projects</h2>
         <div class="projects-grid">
+            <a href="/OneSunAI" class="project-card">
+                <div>
+                    <span class="badge-dev">In Development</span>
+                    <h3>OneSun AI ☀</h3>
+                    <p>Soon.</p>
+                </div>
+                <span class="project-link">More →</span>
+            </a>
             
             <a href="https://t.me/dubligram" class="project-card">
                 <div>
@@ -351,7 +359,6 @@
     </footer>
 
     <script>
-        // Проверка авторизации при загрузке главной
         const savedUser = localStorage.getItem('dublikata_user');
         if (savedUser) {
             const user = JSON.parse(savedUser);
@@ -371,7 +378,6 @@
             window.location.reload();
         }
 
-        // 3D Анимация космоса и звёзд
         const canvas = document.getElementById('space-canvas');
         const ctx = canvas.getContext('2d');
 

@@ -306,7 +306,6 @@
     </footer>
 
     <script>
-        // Проверка авторизации при загрузке главной
         const savedUser = localStorage.getItem('dublikata_user');
         if (savedUser) {
             const user = JSON.parse(savedUser);
@@ -326,7 +325,6 @@
             window.location.reload();
         }
 
-        // 3D Анимация космоса и звёзд
         const canvas = document.getElementById('space-canvas');
         const ctx = canvas.getContext('2d');
 

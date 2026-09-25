@@ -117,7 +117,6 @@
     </div>
 
 <script>
-    // Глобальная функция для приёма данных от виджета Telegram
     window.onTelegramAuth = function(user) {
         const userData = {
             name: user.first_name + (user.last_name ? ' ' + user.last_name : ''),
@@ -127,7 +126,6 @@
         window.location.href = '/';
     };
 
-    // Динамическая генерация скрипта виджета ТГ
     window.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('telegram-widget-wrap');
         const script = document.createElement('script');
