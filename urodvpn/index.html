@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>УродVPN — VPN в Telegram</title>
+<meta name="description" content="УродVPN — VPN-сервис с управлением через Telegram-бота. Тарифы от 79 ₽ за 30 дней, серверы в Германии и Польше, оплата СБП и USDT, поддержка в боте.">
+<meta property="og:title" content="УродVPN — VPN в Telegram">
+<meta property="og:description" content="Тарифы от 79 ₽ за 30 дней, серверы в Германии и Польше, оплата СБП и USDT.">
+<meta property="og:image" content="logo.jpg">
+<link rel="icon" href="logo.jpg">
+<meta name="theme-color" content="#070a14">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"УродVPN","description":"VPN-сервис с управлением через Telegram-бота","url":"https://dublikata.space/urodvpn","offers":[{"@type":"Offer","name":"100 ГБ / 30 дней","price":"79","priceCurrency":"RUB"},{"@type":"Offer","name":"Безлимит / 30 дней","price":"109","priceCurrency":"RUB"},{"@type":"Offer","name":"Я и моя семья / 30 дней","price":"169","priceCurrency":"RUB"}]}</script>
+<style>
+:root{--ink:#070a14;--cyan:#5ee6ff;--violet:#8b6cff;--coral:#ff7a59;--mint:#4be3a8;--text:#f4f7ff;--mute:rgba(235,242,255,.78);--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-behavior:smooth}
+body{margin:0;color:var(--text);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(120% 70% at 50% 0%,#101a3a 0%,var(--ink) 62%)}
+.bg i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55}
+.bg i:nth-child(1){width:420px;height:420px;background:var(--violet);left:-120px;top:80px}
+.bg i:nth-child(2){width:360px;height:360px;background:var(--cyan);right:-120px;top:420px;opacity:.35}
+.bg i:nth-child(3){width:380px;height:380px;background:var(--coral);left:20%;bottom:-160px;opacity:.28}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+nav .b{display:flex;align-items:center;gap:12px;font-family:"Unbounded",sans-serif;font-weight:800;font-size:18px;color:inherit;text-decoration:none}
+nav img{width:38px;height:38px;border-radius:12px;object-fit:cover;border:1px solid var(--line)}
+nav .l{display:flex;gap:22px;font-size:14px;font-weight:600}
+nav .l a{color:var(--mute);text-decoration:none}
+nav .l a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 26px;border-radius:999px;font-weight:800;font-size:16px;text-decoration:none;color:#06101c;background:linear-gradient(135deg,var(--cyan),#8ea6ff);box-shadow:0 12px 34px -10px rgba(94,230,255,.6);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.g{color:var(--text);background:rgba(255,255,255,.08);border:1px solid var(--line);box-shadow:none}
+.hero{padding:56px 0 40px;display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center}
+h1{font-family:"Unbounded",sans-serif;font-weight:800;font-size:clamp(34px,6vw,60px);line-height:1.08;margin:0 0 18px;letter-spacing:-.02em}
+h1 em{font-style:normal;background:linear-gradient(120deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;color:var(--mute);max-width:46ch;margin:0 0 26px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tags span{padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600;background:rgba(255,255,255,.07);border:1px solid var(--line)}
+.logo{justify-self:center;width:min(300px,70vw);aspect-ratio:1;border-radius:34%;object-fit:cover;box-shadow:0 0 80px -10px rgba(94,230,255,.55),0 30px 60px -20px #000;border:1px solid var(--line)}
+section{padding:44px 0}
+h2{font-family:"Unbounded",sans-serif;font-weight:800;font-size:clamp(24px,3.6vw,34px);margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--mute);margin:0 0 28px;max-width:60ch}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{padding:24px;border-radius:26px;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.03));border:1px solid var(--line);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0;color:var(--mute);font-size:15px}
+.ic{font-size:26px;margin-bottom:10px}
+.price{font-family:"Unbounded",sans-serif;font-weight:800;font-size:36px;margin:10px 0 4px}
+.price small{font-family:"Manrope",sans-serif;font-size:14px;font-weight:600;color:var(--mute)}
+.card.hot{border-color:rgba(94,230,255,.6);box-shadow:0 0 50px -18px rgba(94,230,255,.7)}
+.card ul{margin:12px 0 0;padding:0;list-style:none;color:var(--mute);font-size:15px}
+.card li{padding:3px 0 3px 22px;position:relative}
+.card li::before{content:"";position:absolute;left:2px;top:12px;width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.steps{counter-reset:s}
+.steps .card{position:relative;padding-top:56px}
+.steps .card::before{counter-increment:s;content:counter(s);position:absolute;left:24px;top:18px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;color:#06101c;background:var(--cyan)}
+details{border-radius:20px;background:rgba(255,255,255,.06);border:1px solid var(--line);padding:16px 20px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--cyan);font-size:22px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{margin:10px 0 0;color:var(--mute)}
+.fin{margin:30px 0 20px;padding:36px 24px;text-align:center;border-radius:32px;background:linear-gradient(135deg,rgba(94,230,255,.18),rgba(139,108,255,.2));border:1px solid var(--line)}
+.fin h2{margin-bottom:10px}
+.fin p{color:var(--mute);margin:0 auto 22px;max-width:46ch}
+footer{padding:30px 0 50px;color:var(--mute);font-size:13px;text-align:center}
+footer a{color:var(--text)}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:24px}.logo{order:-1;width:150px}.grid,.g2{grid-template-columns:1fr}nav .l{display:none}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="w">
+<nav><a class="b" href="#"><img src="logo.jpg" alt="">УродVPN</a>
+<div class="l"><a href="#tarify">Тарифы</a><a href="#servery">Серверы</a><a href="#bonusy">Бонусы</a><a href="#faq">Вопросы</a></div></nav>
+
+<header class="hero">
+<div>
+<h1>VPN, который покупается <em>в Telegram</em></h1>
+<p class="lead">УродVPN работает через Telegram-бота: выбираете тариф, платите и получаете ключ. Подключение занимает пару минут, поддержка отвечает прямо в боте.</p>
+<div class="cta"><a class="btn" href="https://t.me/MyUrodVPNBot">Открыть бота</a><a class="btn g" href="https://t.me/MyUrodVPN">Наш канал</a></div>
+<div class="tags"><span>от 79 ₽ за 30 дней</span><span>до 10 устройств</span><span>СБП и USDT</span><span>пробный день для новых</span></div>
+</div>
+<img class="logo" src="logo.jpg" alt="Логотип УродVPN">
+</header>
+
+<section>
+<h2>Что это</h2>
+<p class="sub">УродVPN — платный VPN-сервис. Всё управление находится в боте @MyUrodVPNBot и в приложении внутри него (Mini App): покупка, продление, устройства, статус серверов и поддержка.</p>
+<div class="grid">
+<div class="card"><div class="ic">💬</div><h3>Всё в Telegram</h3><p>Не нужно регистрироваться на сайте. Откройте бота, выберите тариф и оплатите.</p></div>
+<div class="card"><div class="ic">📱</div><h3>Несколько устройств</h3><p>В тариф входит 1 устройство, каждое дополнительное стоит 5 ₽ за 30 дней, максимум 10.</p></div>
+<div class="card"><div class="ic">🛟</div><h3>Поддержка в боте</h3><p>Если что-то не работает, пишите в разделе «Поддержка». Статус серверов виден в боте.</p></div>
+</div>
+</section>
+
+<section id="tarify">
+<h2>Тарифы</h2>
+<p class="sub">Цены указаны за 30 дней. Оплата с баланса без комиссии, при оплате СБП или USDT платёжная система берёт свою комиссию сверху.</p>
+<div class="grid">
+<div class="card"><h3>100 ГБ</h3><div class="price">79 ₽<small> / 30 дней</small></div><p>Для лёгкого использования.</p><ul><li>100 ГБ трафика</li><li>1 устройство в цене</li><li>Трафик можно докупить в профиле</li></ul></div>
+<div class="card hot"><h3>Безлимит</h3><div class="price">109 ₽<small> / 30 дней</small></div><p>Без лимита по трафику.</p><ul><li>Безлимитный трафик</li><li>1 устройство в цене</li><li>Дополнительные устройства +5 ₽</li></ul></div>
+<div class="card"><h3>Я и моя семья</h3><div class="price">169 ₽<small> / 30 дней</small></div><p>Один тариф на всю семью.</p><ul><li>Безлимитный трафик</li><li>10 устройств включено</li></ul></div>
+</div>
+</section>
+
+<section id="servery">
+<h2>Серверы</h2>
+<p class="sub">Сейчас доступны три локации. Рабочее состояние каждой видно в боте в разделе «Статус серверов», бот сам проверяет серверы и сообщает в канале о перебоях.</p>
+<div class="grid">
+<div class="card"><div class="ic">🇩🇪</div><h3>Германия 1</h3><p>Основная локация.</p></div>
+<div class="card"><div class="ic">🇩🇪</div><h3>Германия 2</h3><p>Вторая германская локация.</p></div>
+<div class="card"><div class="ic">🇵🇱</div><h3>Польша</h3><p>Два варианта подключения: gRPC и TCP.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Как начать</h2>
+<p class="sub">Подключение занимает несколько минут.</p>
+<div class="grid steps">
+<div class="card"><h3>Откройте бота</h3><p>Нажмите Start в @MyUrodVPNBot и примите условия.</p></div>
+<div class="card"><h3>Выберите тариф</h3><p>Выберите тариф и число устройств, оплатите СБП, USDT или с баланса.</p></div>
+<div class="card"><h3>Подключитесь</h3><p>Бот выдаст ссылку-подписку. Добавьте её в приложение с поддержкой VLESS, инструкция есть в боте.</p></div>
+</div>
+</section>
+
+<section id="bonusy">
+<h2>Бонусы и скидки</h2>
+<p class="sub">Чем дольше вы с нами, тем дешевле.</p>
+<div class="grid g2">
+<div class="card"><div class="ic">🎁</div><h3>Пробный день</h3><p>Новым пользователям бот даёт один день бесплатно, чтобы проверить сервис.</p></div>
+<div class="card"><div class="ic">🏅</div><h3>Уровни</h3><p>7 уровней от «Новичка» до «Бриллианта». Чем выше уровень, тем больше скидка на продление, до 5,5%.</p></div>
+<div class="card"><div class="ic">📅</div><h3>Бонус каждый день</h3><p>Заходите в бота за ежедневным бонусом. За серии входов дают дни подписки и деньги на баланс.</p></div>
+<div class="card"><div class="ic">👥</div><h3>Реферальная программа</h3><p>Пригласите друга по своей ссылке и получите бонусы за его покупки.</p></div>
+</div>
+</section>
+
+<section id="faq">
+<h2>Вопросы</h2>
+<p class="sub">Коротко о главном.</p>
+<details><summary>Как оплатить?</summary><p>Рублями по СБП, в USDT через xRocket или с баланса бота. С баланса комиссии нет, у СБП и xRocket платёжная система берёт небольшую комиссию сверху, её видно перед оплатой.</p></details>
+<details><summary>Сколько устройств можно подключить?</summary><p>В цену тарифа входит одно. Дополнительные стоят 5 ₽ за 30 дней каждое, максимум 10. Тариф «Я и моя семья» включает 10 устройств.</p></details>
+<details><summary>Что делать, если не подключается?</summary><p>Проверьте статус серверов в боте и выберите другую локацию. Если не помогло, напишите в «Поддержку» в боте, там отвечают прямо в чате.</p></details>
+<details><summary>Можно ли продлить подписку заранее?</summary><p>Да. Можно продлить вручную или включить автопродление, тогда списание произойдёт автоматически с баланса.</p></details>
+<details><summary>Где условия использования?</summary><p>В боте, в разделе «Документы». Их нужно принять при первом запуске.</p></details>
+</section>
+
+<div class="fin"><h2>Попробуйте сами</h2><p>Откройте бота и заберите пробный день, если вы у нас впервые.</p><a class="btn" href="https://t.me/MyUrodVPNBot">Перейти в @MyUrodVPNBot</a></div>
+
+<footer>© УродVPN · <a href="https://t.me/MyUrodVPN">Telegram-канал</a> · <a href="https://t.me/MyUrodVPNBot">Бот</a><br>Условия использования доступны в боте в разделе «Документы».</footer>
+</div>
+</body>
+</html>
