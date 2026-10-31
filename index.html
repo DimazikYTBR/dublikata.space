@@ -203,7 +203,8 @@
             border: 1px solid var(--border);
             border-radius: 28px;
             padding: 40px;
-            transition: 0.3s;
+            transition: translate .3s, border-color .3s, box-shadow .3s;
+            will-change: transform, opacity;
             text-decoration: none;
             color: inherit;
             display: flex;
@@ -212,7 +213,7 @@
         }
 
         .project-card:hover {
-            transform: translateY(-6px);
+            translate: 0 -6px;
             border-color: rgba(255,255,255,0.3);
             box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
@@ -250,6 +251,51 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 1px solid rgba(0, 122, 255, 0.3);
+        }
+
+        .project-card.feature {
+            grid-column: 1 / -1;
+            flex-direction: row;
+            align-items: center;
+            gap: 36px;
+            position: relative;
+            overflow: hidden;
+            border-color: rgba(94, 230, 255, 0.35);
+            background: radial-gradient(120% 140% at 0% 0%, rgba(80, 120, 255, 0.28), rgba(18, 18, 20, 0.88) 60%);
+            box-shadow: 0 0 80px -20px rgba(94, 160, 255, 0.55);
+        }
+        .project-card.feature::after {
+            content: "";
+            position: absolute;
+            top: 0; left: -60%;
+            width: 40%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,0.14), transparent);
+            transform: skewX(-18deg);
+            animation: sheen 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes sheen { 0%, 55% { left: -60%; } 100% { left: 140%; } }
+        .feature .f-logo {
+            width: 150px; height: 150px;
+            flex: none;
+            border-radius: 34px;
+            object-fit: cover;
+            box-shadow: 0 0 60px rgba(94, 200, 255, 0.55), 0 20px 40px rgba(0,0,0,0.6);
+            animation: floaty 6s ease-in-out infinite;
+        }
+        @keyframes floaty { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+        .feature .f-body { flex: 1; }
+        .feature .f-body h3 { font-size: 2.4rem; }
+        .feature .f-body p { margin-bottom: 22px; }
+        .feature .f-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+        .feature .f-tags span { font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid var(--border); }
+        @media (max-width: 768px) {
+            .project-card.feature { flex-direction: column; text-align: center; align-items: center; gap: 22px; padding: 30px 24px; }
+            .feature .f-logo { width: 110px; height: 110px; }
+            .feature .f-tags { justify-content: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .project-card.feature::after, .feature .f-logo { animation: none; }
         }
 
         .studio-footer {
@@ -305,6 +351,17 @@
     <section class="projects-section">
         <h2 class="section-title">Our Projects</h2>
         <div class="projects-grid">
+            <a href="/urodvpn" class="project-card feature" id="urod-card">
+                <img src="urodvpn/logo.jpg" alt="UrodVPN" class="f-logo">
+                <div class="f-body">
+                    <span class="badge-dev" style="background: rgba(52, 199, 89, 0.15); color: #09ff00; border-color: rgba(52, 199, 89, 0.3);">VPN service</span>
+                    <h3>УродVPN 🛰</h3>
+                    <p>VPN with a Telegram bot: pick a plan, pay and connect in a couple of minutes. Servers in Germany and Poland, plans from 79 ₽ for 30 days.</p>
+                    <div class="f-tags"><span>Telegram bot</span><span>up to 10 devices</span><span>SBP &amp; USDT</span><span>free trial day</span></div>
+                    <span class="project-link">Open project →</span>
+                </div>
+            </a>
+
             <a href="/OneSunAI" class="project-card">
                 <div>
                     <span class="badge-dev">In Development</span>
@@ -380,74 +437,143 @@
 
         const canvas = document.getElementById('space-canvas');
         const ctx = canvas.getContext('2d');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        let width, height;
+        let width, height, nebula;
         let stars = [];
-        const numStars = 400;
+        const numStars = 520;
+        const COLORS = ['255,255,255', '255,255,255', '170,200,255', '200,220,255', '255,225,180', '255,190,150'];
+
+        function buildNebula() {
+            nebula = document.createElement('canvas');
+            nebula.width = width; nebula.height = height;
+            const n = nebula.getContext('2d');
+            n.fillStyle = '#000'; n.fillRect(0, 0, width, height);
+            const clouds = [
+                [.18, .28, .55, '70,60,200', .34], [.82, .22, .50, '30,110,200', .26],
+                [.70, .78, .62, '150,50,160', .26], [.25, .85, .45, '20,140,150', .20], [.5, .5, .75, '40,40,90', .22]
+            ];
+            for (const c of clouds) {
+                const r = c[2] * Math.max(width, height);
+                const g = n.createRadialGradient(c[0] * width, c[1] * height, 0, c[0] * width, c[1] * height, r);
+                g.addColorStop(0, `rgba(${c[3]},${c[4]})`);
+                g.addColorStop(1, `rgba(${c[3]},0)`);
+                n.fillStyle = g; n.fillRect(0, 0, width, height);
+            }
+            for (let i = 0; i < 1400; i++) {
+                n.fillStyle = `rgba(255,255,255,${Math.random() * 0.35})`;
+                n.fillRect(Math.random() * width, Math.random() * height, 1, 1);
+            }
+            const px = width * 0.86, py = height * 0.2, pr = Math.min(width, height) * 0.09;
+            const pg = n.createRadialGradient(px - pr * .4, py - pr * .4, pr * .1, px, py, pr);
+            pg.addColorStop(0, '#6d88c9'); pg.addColorStop(.55, '#2b3b78'); pg.addColorStop(1, '#05070f');
+            n.save(); n.globalAlpha = .9; n.fillStyle = pg; n.beginPath(); n.arc(px, py, pr, 0, Math.PI * 2); n.fill();
+            const halo = n.createRadialGradient(px, py, pr * .95, px, py, pr * 1.6);
+            halo.addColorStop(0, 'rgba(110,150,255,.35)'); halo.addColorStop(1, 'rgba(110,150,255,0)');
+            n.fillStyle = halo; n.beginPath(); n.arc(px, py, pr * 1.6, 0, Math.PI * 2); n.fill(); n.restore();
+        }
 
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
+            buildNebula();
+        }
+
+        function resetStar(star, far) {
+            star.x = (Math.random() - 0.5) * width * 2;
+            star.y = (Math.random() - 0.5) * height * 2;
+            star.z = far ? width : Math.random() * width;
+            star.size = Math.random() * 2.2 + .3;
+            star.c = COLORS[(Math.random() * COLORS.length) | 0];
+            star.tw = Math.random() * Math.PI * 2;
+            star.ts = .5 + Math.random() * 2;
         }
 
         window.addEventListener('resize', resize);
         resize();
+        for (let i = 0; i < numStars; i++) { const st = {}; resetStar(st, false); stars.push(st); }
 
-        for (let i = 0; i < numStars; i++) {
-            stars.push({
-                x: (Math.random() - 0.5) * width * 2,
-                y: (Math.random() - 0.5) * height * 2,
-                z: Math.random() * width,
-                size: Math.random() * 2.2
-            });
-        }
+        let scrollSpeed = 0.5, targetSpeed = 0.5, mx = 0, my = 0, tmx = 0, tmy = 0;
+        window.addEventListener('scroll', () => { targetSpeed = 0.5 + window.scrollY * 0.003; });
+        window.addEventListener('mousemove', e => { tmx = e.clientX / width - .5; tmy = e.clientY / height - .5; });
 
-        let scrollSpeed = 0.5;
-        let targetSpeed = 0.5;
-
-        window.addEventListener('scroll', () => {
-            targetSpeed = 0.5 + window.scrollY * 0.003;
-        });
-
-        function animate() {
+        let meteor = null;
+        function animate(now) {
+            now = (now || 0) / 1000;
             scrollSpeed += (targetSpeed - scrollSpeed) * 0.05;
             targetSpeed += (0.6 - targetSpeed) * 0.02;
+            mx += (tmx - mx) * .04; my += (tmy - my) * .04;
 
-            ctx.fillStyle = '#000000';
-            ctx.fillRect(0, 0, width, height);
+            ctx.drawImage(nebula, -mx * 14, -my * 14, width, height);
 
-            const cx = width / 2;
-            const cy = height / 2;
+            const cx = width / 2 - mx * 40;
+            const cy = height / 2 - my * 40;
+            const speed = reduce ? 0.2 : scrollSpeed;
 
             for (let i = 0; i < stars.length; i++) {
-                let star = stars[i];
-                star.z -= scrollSpeed;
-
-                if (star.z <= 0) {
-                    star.z = width;
-                    star.x = (Math.random() - 0.5) * width * 2;
-                    star.y = (Math.random() - 0.5) * height * 2;
-                }
-
-                let k = 250 / star.z;
-                let px = star.x * k + cx;
-                let py = star.y * k + cy;
-
-                if (px >= 0 && px <= width && py >= 0 && py <= height) {
-                    let pSize = Math.max(0, (1 - star.z / width) * star.size * 2);
-                    let opacity = Math.min(1, (1 - star.z / width) * 1.5);
-                    
-                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(px, py, pSize, 0, Math.PI * 2);
-                    ctx.fill();
+                const star = stars[i];
+                const oldK = 250 / star.z;
+                const ox = star.x * oldK + cx, oy = star.y * oldK + cy;
+                star.z -= speed;
+                if (star.z <= 0) { resetStar(star, true); continue; }
+                const k = 250 / star.z;
+                const px = star.x * k + cx, py = star.y * k + cy;
+                if (px < 0 || px > width || py < 0 || py > height) continue;
+                const depth = 1 - star.z / width;
+                const pSize = Math.max(0, depth * star.size * 2);
+                const tw = .75 + .25 * Math.sin(now * star.ts + star.tw);
+                const opacity = Math.min(1, depth * 1.5) * tw;
+                if (speed > 2.2) {
+                    ctx.strokeStyle = `rgba(${star.c},${opacity * .75})`;
+                    ctx.lineWidth = Math.max(.6, pSize * .9);
+                    ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(px, py); ctx.stroke();
+                } else {
+                    ctx.fillStyle = `rgba(${star.c},${opacity})`;
+                    ctx.beginPath(); ctx.arc(px, py, pSize, 0, Math.PI * 2); ctx.fill();
+                    if (pSize > 1.6) {
+                        ctx.fillStyle = `rgba(${star.c},${opacity * .18})`;
+                        ctx.beginPath(); ctx.arc(px, py, pSize * 3, 0, Math.PI * 2); ctx.fill();
+                    }
                 }
             }
 
+            if (!reduce) {
+                if (!meteor && Math.random() < .004) {
+                    meteor = { x: Math.random() * width, y: Math.random() * height * .5, vx: 14 + Math.random() * 8, vy: 6 + Math.random() * 4, life: 1 };
+                }
+                if (meteor) {
+                    const g = ctx.createLinearGradient(meteor.x, meteor.y, meteor.x - meteor.vx * 7, meteor.y - meteor.vy * 7);
+                    g.addColorStop(0, `rgba(255,255,255,${meteor.life})`); g.addColorStop(1, 'rgba(255,255,255,0)');
+                    ctx.strokeStyle = g; ctx.lineWidth = 2; ctx.beginPath();
+                    ctx.moveTo(meteor.x, meteor.y); ctx.lineTo(meteor.x - meteor.vx * 7, meteor.y - meteor.vy * 7); ctx.stroke();
+                    meteor.x += meteor.vx; meteor.y += meteor.vy; meteor.life -= .02;
+                    if (meteor.life <= 0 || meteor.x > width + 100) meteor = null;
+                }
+            }
             requestAnimationFrame(animate);
         }
 
-        animate();
+        const flyCards = Array.from(document.querySelectorAll('.project-card'));
+        function ease(t) { return 1 - Math.pow(1 - t, 3); }
+        function fly() {
+            const vh = window.innerHeight;
+            flyCards.forEach((el, i) => {
+                const r = el.getBoundingClientRect();
+                const feature = el.classList.contains('feature');
+                const span = vh * (feature ? .7 : .5);
+                let p = Math.min(1, Math.max(0, (vh - r.top) / span));
+                if (reduce) p = 1;
+                const e = ease(p), side = feature ? 0 : (i % 2 ? 1 : -1);
+                el.style.opacity = Math.min(1, e * 1.4);
+                el.style.transform = `translate3d(${(1 - e) * 140 * side}px, ${(1 - e) * (feature ? 260 : 120)}px, 0) scale(${(feature ? .35 : .8) + e * (feature ? .65 : .2)}) rotate(${(1 - e) * (feature ? -8 : 3 * side)}deg)`;
+                el.style.filter = p < 1 ? `blur(${(1 - e) * (feature ? 10 : 5)}px)` : '';
+            });
+        }
+        window.addEventListener('scroll', fly, { passive: true });
+        window.addEventListener('resize', fly);
+        fly();
+
+        requestAnimationFrame(animate);
     </script>
 </body>
 </html>
