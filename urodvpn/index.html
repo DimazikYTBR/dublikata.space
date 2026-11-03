@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>УродVPN — VPN в Telegram</title>
-<meta name="description" content="УродVPN — VPN-сервис с управлением через Telegram-бота. Тарифы от 79 ₽ за 30 дней, серверы в Германии и Польше, оплата СБП и USDT, поддержка в боте.">
+<meta name="description" content="УродVPN — VPN-сервис с управлением через Telegram-бота. Тарифы от 79 ₽ за 30 дней, серверы в Германии и Польше, оплата СБП и USDT, Mini App с играми и бесплатными кейсами.">
 <meta property="og:title" content="УродVPN — VPN в Telegram">
 <meta property="og:description" content="Тарифы от 79 ₽ за 30 дней, серверы в Германии и Польше, оплата СБП и USDT.">
 <meta property="og:image" content="logo.jpg">
@@ -76,7 +76,7 @@ footer a{color:var(--text)}
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="w">
 <nav><a class="b" href="#"><img src="logo.jpg" alt="">УродVPN</a>
-<div class="l"><a href="#tarify">Тарифы</a><a href="#servery">Серверы</a><a href="#bonusy">Бонусы</a><a href="#faq">Вопросы</a></div></nav>
+<div class="l"><a href="#tarify">Тарифы</a><a href="#servery">Серверы</a><a href="#igry">Игры</a><a href="#bonusy">Бонусы</a><a href="#faq">Вопросы</a></div></nav>
 
 <header class="hero">
 <div>
@@ -94,7 +94,7 @@ footer a{color:var(--text)}
 <div class="grid">
 <div class="card"><div class="ic">💬</div><h3>Всё в Telegram</h3><p>Не нужно регистрироваться на сайте. Откройте бота, выберите тариф и оплатите.</p></div>
 <div class="card"><div class="ic">📱</div><h3>Несколько устройств</h3><p>В тариф входит 1 устройство, каждое дополнительное стоит 5 ₽ за 30 дней, максимум 10.</p></div>
-<div class="card"><div class="ic">🛟</div><h3>Поддержка в боте</h3><p>Если что-то не работает, пишите в разделе «Поддержка». Статус серверов виден в боте.</p></div>
+<div class="card"><div class="ic">🛟</div><h3>Живая поддержка</h3><p>Если что-то не работает, пишите в <a href="https://t.me/UrodVPNHuman">@UrodVPNHuman</a> или в разделе «Поддержка» бота. Статус серверов виден в боте.</p></div>
 </div>
 </section>
 
@@ -110,11 +110,12 @@ footer a{color:var(--text)}
 
 <section id="servery">
 <h2>Серверы</h2>
-<p class="sub">Сейчас доступны три локации. Рабочее состояние каждой видно в боте в разделе «Статус серверов», бот сам проверяет серверы и сообщает в канале о перебоях.</p>
-<div class="grid">
-<div class="card"><div class="ic">🇩🇪</div><h3>Германия 1</h3><p>Основная локация.</p></div>
-<div class="card"><div class="ic">🇩🇪</div><h3>Германия 2</h3><p>Вторая германская локация.</p></div>
-<div class="card"><div class="ic">🇵🇱</div><h3>Польша</h3><p>Два варианта подключения: gRPC и TCP.</p></div>
+<p class="sub">Сейчас доступны четыре сервера. Рабочее состояние видно в боте в разделе «Статус серверов», бот сам проверяет серверы и сообщает в канале о перебоях. Для игр лучше выбирать варианты на TCP и Hysteria2.</p>
+<div class="grid g2">
+<div class="card"><div class="ic">🇩🇪</div><h3>Германия 1 | gRPC</h3><p>Основная германская локация на gRPC.</p></div>
+<div class="card"><div class="ic">🇩🇪</div><h3>Германия 2</h3><p>VLESS + TCP + Reality: меньше задержки, хорошо подходит для игр.</p></div>
+<div class="card"><div class="ic">🇵🇱</div><h3>Польша</h3><p>VLESS + TCP + Reality: стабильное подключение с низкой задержкой.</p></div>
+<div class="card"><div class="ic">🇵🇱</div><h3>Польша | Hysteria2</h3><p>Новый протокол на UDP, сейчас в тесте. У некоторых операторов может не подключаться, тогда берите обычную Польшу.</p></div>
 </div>
 </section>
 
@@ -128,6 +129,15 @@ footer a{color:var(--text)}
 </div>
 </section>
 
+<section id="igry">
+<h2>Игры и кейсы</h2>
+<p class="sub">В Mini App внутри бота есть вкладка «Игры». Награды приходят в бота автоматически: токены, дни подписки и попытки.</p>
+<div class="grid">
+<div class="card"><div class="ic">⛏</div><h3>Копай Гробы</h3><p>Выберите гроб и раскопайте приз: токены, дни VPN, иногда джекпот. Попытка раз в 12 часов.</p></div>
+<div class="card"><div class="ic">🪙</div><h3>Лови Токены</h3><p>Ловите токены и монеты за 30 секунд и обходите бомбы. Игра доступна раз в 4 часа.</p></div>
+<div class="card"><div class="ic">📦</div><h3>Бесплатные кейсы</h3><p>Урод Кейс открывается раз в день бесплатно, иногда появляются сезонные кейсы. В кейсе токены и дополнительные попытки в играх.</p></div>
+</div>
+</section>
 <section id="bonusy">
 <h2>Бонусы и скидки</h2>
 <p class="sub">Чем дольше вы с нами, тем дешевле.</p>
@@ -144,14 +154,14 @@ footer a{color:var(--text)}
 <p class="sub">Коротко о главном.</p>
 <details><summary>Как оплатить?</summary><p>Рублями по СБП, в USDT через xRocket или с баланса бота. С баланса комиссии нет, у СБП и xRocket платёжная система берёт небольшую комиссию сверху, её видно перед оплатой.</p></details>
 <details><summary>Сколько устройств можно подключить?</summary><p>В цену тарифа входит одно. Дополнительные стоят 5 ₽ за 30 дней каждое, максимум 10. Тариф «Я и моя семья» включает 10 устройств.</p></details>
-<details><summary>Что делать, если не подключается?</summary><p>Проверьте статус серверов в боте и выберите другую локацию. Если не помогло, напишите в «Поддержку» в боте, там отвечают прямо в чате.</p></details>
+<details><summary>Что делать, если не подключается?</summary><p>Проверьте статус серверов в боте и выберите другую локацию. Если не помогло, напишите в <a href="https://t.me/UrodVPNHuman">@UrodVPNHuman</a> или в «Поддержку» в боте.</p></details>
 <details><summary>Можно ли продлить подписку заранее?</summary><p>Да. Можно продлить вручную или включить автопродление, тогда списание произойдёт автоматически с баланса.</p></details>
 <details><summary>Где условия использования?</summary><p>В боте, в разделе «Документы». Их нужно принять при первом запуске.</p></details>
 </section>
 
 <div class="fin"><h2>Попробуйте сами</h2><p>Откройте бота и заберите пробный день, если вы у нас впервые.</p><a class="btn" href="https://t.me/MyUrodVPNBot">Перейти в @MyUrodVPNBot</a></div>
 
-<footer>© УродVPN · <a href="https://t.me/MyUrodVPN">Telegram-канал</a> · <a href="https://t.me/MyUrodVPNBot">Бот</a><br>Условия использования доступны в боте в разделе «Документы».</footer>
+<footer>© УродVPN · <a href="https://t.me/MyUrodVPN">Канал</a> · <a href="https://t.me/UrodVPNUpdates">Обновления</a> · <a href="https://t.me/MyUrodVPNBot">Бот</a> · <a href="https://t.me/UrodVPNHuman">Поддержка</a><br>Условия использования доступны в боте в разделе «Документы».</footer>
 </div>
 </body>
 </html>
