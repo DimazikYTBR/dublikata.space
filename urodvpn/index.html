@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>УродVPN — VPN в Telegram</title>
-<meta name="description" content="УродVPN — VPN-сервис с управлением через Telegram-бота. Тарифы от 79 ₽ за 30 дней, серверы в Германии и Польше, оплата СБП и USDT, подключение в один тап, Mini App с играми и бесплатными кейсами.">
+<meta name="description" content="УродVPN — VPN-сервис с управлением через Telegram-бота. Тарифы от 79 ₽ за 30 дней, серверы в Германии и Польше, оплата СБП и USDT, подключение в один тап, Mini App с игрой и скидочными токенами.">
 <link rel="canonical" href="https://dublikata.space/urodvpn/">
 <meta property="og:title" content="УродVPN — VPN в Telegram">
 <meta property="og:description" content="Тарифы от 79 ₽ за 30 дней, серверы в Германии и Польше, оплата СБП и USDT, подключение в один тап.">
@@ -144,7 +144,7 @@ footer a{color:var(--text)}
 <div class="floor" aria-hidden="true"></div>
 <div class="w">
 <nav><a class="b" href="#"><img src="logo.jpg" alt="">УродVPN</a>
-<div class="l"><a href="#tarify">Тарифы</a><a href="#servery">Серверы</a><a href="#igry">Игры</a><a href="#bonusy">Бонусы</a><a href="#faq">Вопросы</a></div></nav>
+<div class="l"><a href="#tarify">Тарифы</a><a href="#servery">Серверы</a><a href="#igry">Токены</a><a href="#bonusy">Бонусы</a><a href="#faq">Вопросы</a></div></nav>
 
 <header class="hero">
 <div>
@@ -225,12 +225,12 @@ footer a{color:var(--text)}
 </section>
 
 <section id="igry">
-<h2 class="rv">Игры и кейсы</h2>
-<p class="sub rv">В Mini App внутри бота есть вкладка «Игры». Награды приходят в бота автоматически: токены, дни подписки и попытки.</p>
+<h2 class="rv">Игра и скидочные токены</h2>
+<p class="sub rv">В Mini App внутри бота есть игра «Лови Токены»: ловите монеты за 30 секунд и обходите бомбы. Награда приходит в бота автоматически.</p>
 <div class="grid">
-<div class="card rv"><div class="ic">⛏</div><h3>Копай Гробы</h3><p>Выберите гроб и раскопайте приз: токены, дни VPN, иногда джекпот. Попытка раз в 12 часов.</p></div>
-<div class="card rv"><div class="ic">🪙</div><h3>Лови Токены</h3><p>Ловите токены и монеты за 30 секунд и обходите бомбы. Игра доступна раз в 4 часа.</p></div>
-<div class="card rv"><div class="ic">📦</div><h3>Бесплатные кейсы</h3><p>Урод Кейс открывается раз в день бесплатно, иногда появляются сезонные кейсы.</p></div>
+<div class="card rv"><div class="ic">🪙</div><h3>Лови Токены</h3><p>1 токен уровня за каждые 5 пойманных монет, до 20 за игру. Доступна раз в 4 часа.</p></div>
+<div class="card hot rv"><div class="ic">💸</div><h3>Скидочные токены</h3><p>С каждой покупки возвращается 1% токенами. 1 токен = 1 ₽, они сами спишутся при следующей оплате, до 50% цены.</p></div>
+<div class="card rv"><div class="ic">📅</div><h3>Бонус каждый день</h3><p>Заходите в бота за ежедневным бонусом, за серии входов дают дни подписки.</p></div>
 </div>
 </section>
 
@@ -368,7 +368,6 @@ footer a{color:var(--text)}
   loop();
   cv.style.opacity=0; cv.style.transition='opacity 1.2s'; requestAnimationFrame(function(){ cv.style.opacity=1; });
 })();
-// свечение за курсором
 (function(){ if(!matchMedia('(pointer:fine)').matches) return; var r=document.documentElement; addEventListener('pointermove',function(e){ r.style.setProperty('--cx',e.clientX+'px'); r.style.setProperty('--cy',e.clientY+'px'); }); })();
 </script>
 </body>
