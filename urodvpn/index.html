@@ -162,7 +162,7 @@ footer a{color:var(--text)}
 <div>
 <h2 class="rv">Всё в одном меню</h2>
 <p class="sub rv">Пять кнопок вместо десятков: купить, посмотреть подписку, поиграть, позвать друзей и написать в поддержку. Остальное спрятано внутри.</p>
-<ul class="chk rv"><li><b>Моя подписка:</b> статус, ссылка, подсказка лучшего сервера для игр</li><li><b>Подключить в Happ / INCY:</b> одно нажатие вместо копирования ссылки</li><li><b>QR-код</b> для компьютера или второго телефона</li><li><b>Продление в один тап</b> прямо из напоминания</li></ul>
+<ul class="chk rv"><li><b>Моя подписка:</b> статус, ссылка, подсказка лучшего сервера для игр</li><li><b>Подключить в INCY / Happ:</b> одно нажатие вместо копирования ссылки</li><li><b>QR-код</b> для компьютера или второго телефона</li><li><b>Продление в один тап</b> прямо из напоминания</li></ul>
 </div>
 <div class="scene" aria-hidden="true">
 <div class="stage" id="stage">
@@ -173,7 +173,7 @@ footer a{color:var(--text)}
 <div class="r"><div class="k">📱 Моя подписка</div></div>
 <div class="r"><div class="k">🎮 Игры</div><div class="k">👥 Друзья</div></div>
 <div class="r"><div class="k g">Поддержка</div><div class="k">⭐ Отзывы</div></div>
-<div class="r" style="margin-top:auto"><div class="k t">⚡ Подключить в Happ</div></div>
+<div class="r" style="margin-top:auto"><div class="k t">⚡ Подключить в INCY</div></div>
 </div></div>
 <div class="float f1">₽</div><div class="float f2">🔒</div><div class="float f3">+3 дня</div><div class="float f4">🎁</div>
 </div>
@@ -186,7 +186,7 @@ footer a{color:var(--text)}
 <p class="sub rv">УродVPN — платный VPN-сервис. Всё управление находится в боте @MyUrodVPNBot и в приложении внутри него (Mini App): покупка, продление, устройства, статус серверов и поддержка.</p>
 <div class="grid">
 <div class="card rv"><div class="ic">💬</div><h3>Всё в Telegram</h3><p>Не нужно регистрироваться на сайте. Откройте бота, выберите тариф и оплатите.</p></div>
-<div class="card rv"><div class="ic">⚡</div><h3>Подключение в один тап</h3><p>Кнопки «Подключить в Happ» и «В INCY» сами добавят подписку. Для компьютера есть QR-код.</p></div>
+<div class="card rv"><div class="ic">⚡</div><h3>Подключение в один тап</h3><p>Кнопки «Подключить в INCY» и «В Happ» сами добавят подписку. Для компьютера есть QR-код.</p></div>
 <div class="card rv"><div class="ic">🛟</div><h3>Живая поддержка</h3><p>Если что-то не работает, пишите в <a href="https://t.me/UrodVPNHuman">@UrodVPNHuman</a> или в разделе «Поддержка» бота. Статус серверов виден в боте.</p></div>
 </div>
 </section>
@@ -220,7 +220,7 @@ footer a{color:var(--text)}
 <div class="grid steps">
 <div class="card rv"><h3>Откройте бота</h3><p>Нажмите Start в @MyUrodVPNBot и примите условия.</p></div>
 <div class="card rv"><h3>Выберите тариф</h3><p>Выберите тариф и число устройств, оплатите СБП, USDT или с баланса.</p></div>
-<div class="card rv"><h3>Подключитесь</h3><p>Откройте «Моя подписка» и нажмите «Подключить в Happ» или «В INCY». Всё добавится само.</p></div>
+<div class="card rv"><h3>Подключитесь</h3><p>Откройте «Моя подписка» и нажмите «Подключить в INCY» или «В Happ». Всё добавится само.</p></div>
 </div>
 </section>
 
@@ -368,6 +368,7 @@ footer a{color:var(--text)}
   loop();
   cv.style.opacity=0; cv.style.transition='opacity 1.2s'; requestAnimationFrame(function(){ cv.style.opacity=1; });
 })();
+// свечение за курсором
 (function(){ if(!matchMedia('(pointer:fine)').matches) return; var r=document.documentElement; addEventListener('pointermove',function(e){ r.style.setProperty('--cx',e.clientX+'px'); r.style.setProperty('--cy',e.clientY+'px'); }); })();
 </script>
 </body>
